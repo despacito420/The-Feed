@@ -6,5 +6,3 @@ minima:
 title: The (SecOps) Feed
 description: The Feed is a curated Operational Threat Intelligence list of articles of interest for SOC / DFIR / CTI and Threat Hunting Teams.
 author: Ruslan Rustchev
-header-pages:
-  - index.html
