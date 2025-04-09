@@ -53,6 +53,6 @@ Created and maintained by [Ruslan Rustchev](https://www.linkedin.com/in/ruslan-r
 
 ## Archive
 
-[2024: Cybereason Threat Alert: The XZ Backdoor - Supply Chaining Into Your SSH](https://www.cybereason.com/blog/threat-alert-the-xz-backdoor)
-[2021: BlogPost: The 2021 Volkswagen Group of America Data Leak through Cloud Storage misconfiguration](./Blog/The_Volkswagen_DataLeak.md)
+[2024: Cybereason Threat Alert: The XZ Backdoor - Supply Chaining Into Your SSH](https://www.cybereason.com/blog/threat-alert-the-xz-backdoor)\
+[2021: BlogPost: The 2021 Volkswagen Group of America Data Leak through Cloud Storage misconfiguration](./Blog/The_Volkswagen_DataLeak.md)\
 [2019: Azure Sentinel Whitepaper (German)](./Blog/azure-sentinel-whitepaper.pdf)
