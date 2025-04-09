@@ -6,6 +6,7 @@ Created and maintained by [Ruslan Rustchev](https://www.linkedin.com/in/ruslan-r
 ## 2025
 
 ### April
+[Whitepaper 2025-05-10](./Blog/Networking_for_SOC.md)\
 [The Feed 2025-04-09](./summaries/The-Feed_2025-04-09.md)\
 [The Feed 2025-04-07](./summaries/The-Feed_2025-04-07.md)\
 [The Feed 2025-04-04](./summaries/The-Feed_2025-04-04.md)\

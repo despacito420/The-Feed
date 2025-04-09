@@ -1,5 +1,42 @@
 # Networking for Security Analysts
 
+-   [Introduction](#introduction)
+-   [Understanding the Basics of Networking](#understanding-the-basics-of-networking)
+    -   [The Open Systems Interconnection (OSI) Model](#the-open-systems-interconnection-osi-model)
+    -   [The TCP/IP Model](#the-tcpip-model)
+    -   [Packet Encapsulation and Transfer](#packet-encapsulation-and-transfer)
+    -   [Logical and Physical Addressing](#logical-and-physical-addressing)
+    -   [Significance for SOC Analysts](#significance-for-soc-analysts)
+-   [Understanding Traditional Firewall Systems](#understanding-traditional-firewall-systems)
+    - [Understanding the Historical Context and Core Functionality of Traditional Firewalls](#understanding-the-historical-context-and-core-functionality-of-traditional-firewalls)
+    - [Stateless vs Stateful packet inspection](#stateless-vs-stateful-packet-inspection)
+-   [Proxies and how they are different to firewalls:](#proxies-and-how-they-are-different-to-firewalls)
+    -   [Understanding Proxy Server Functioning and it's part in the OSI Layer](#understanding-proxy-server-functioning-and-its-part-in-the-osi-layer)
+-   [Understanding Web Application Firewalls (WAFs)](#understanding-web-application-firewalls-wafs)
+    -   [How Does a WAF Differ from a Traditional Firewall or an IDS?](#how-does-a-waf-differ-from-a-traditional-firewall-or-an-ids)
+    -   [What Attacks Will a WAF Detect and Prevent?](#what-attacks-will-a-waf-detect-and-prevent)
+    -   [Web application Firewall rules](#web-application-firewall-rules)
+-   [Intrusion Detection Systems (IDS) and Intrusion Prevention Systems (IPS)](#intrusion-detection-systems-ids-and-intrusion-prevention-systems-ips)
+    -   [Differences Between IDS/IPS and Firewalls, WAFs](#differences-between-idsips-and-firewalls-wafs)
+    -   [Purpose of Intrusion Detection Systems](#purpose-of-intrusion-detection-systems)
+    -   [Understanding IDS/IPS Types and Their Differences in the Detection Stack](#understanding-idsips-types-and-their-differences-in-the-detection-stack)
+    -   [Different Types of Detections](#different-types-of-detections)
+    -   [Example of an IDS Signature (Rule)](#example-of-an-ids-signature-rule)
+    -   [Challenges with IDS/IPS](#challenges-with-idsips)
+-   [What are Network Detection and Response - NDR and why was there a need for new network traffic analysis?](#what-are-network-detection-and-response---ndr-and-why-was-there-a-need-for-new-network-traffic-analysis)
+    -   [How Does NDR Detect Malicious Activity?](#how-does-ndr-detect-malicious-activity)
+    -   [How is NDR Different from IDS/IPS Systems?](#how-is-ndr-different-from-idsips-systems)
+    -   [Real Examples of Attacks and How NDR Enhances Detection and Investigation:](#real-examples-of-attacks-and-how-ndr-enhances-detection-and-investigation)
+-   [Understanding  Next-Generation Firewalls (NGFWs)](#understanding--next-generation-firewalls-ngfws)
+    -   [What are Next-Generation Firewalls (NGFWs)?](#what-are-next-generation-firewalls-ngfws)
+    -   [How do NGFWs Compare to Traditional Firewalls?](#how-do-ngfws-compare-to-traditional-firewalls)
+    -   [What Features and Capabilities do They Support?](#what-features-and-capabilities-do-they-support)
+-   [Conclusion](#conclusion)
+
+## Introduction 
+
+As a Security Operations Center Manager, I want to underscore the paramount importance of a robust comprehension of networking fundamentals for our team of experienced security analysts. The very essence of our daily responsibilities—detecting, investigating, and preventing security incidents is inextricably linked with the intricate mechanisms of network communication. Without a thorough understanding of how networks function, analysts are significantly hampered in their ability to effectively interpret security alerts, analyze suspicious network traffic, and trace the pathways of malicious activity. This paper is designed to address this critical need by providing a comprehensive exploration of networking concepts, from the foundational principles governing data transmission to the operational intricacies of key security technologies that secure network communication. A strong grasp of these fundamentals is not merely beneficial, but absolutely essential for tasks such as accurately dissecting security incidents, comprehending the operational context and limitations of various security devices like firewalls and intrusion detection systems, and effectively tracing the origins and destinations of attacks during incident investigations. This paper will therefore lay the necessary groundwork by detailing these technical concepts, ensuring that analysts possess the requisite knowledge to excel in their mission of safeguarding our organization's digital assets.
+
 ## Understanding the Basics of Networking
 
 For experienced Security Operations Center (SOC) analysts, a robust comprehension of networking fundamentals is paramount. Our daily tasks of detecting, investigating, and preventing security incidents are deeply intertwined with the intricacies of how network communications function. This chapter lays the groundwork by exploring these essential concepts, starting with the Open Systems Interconnection (OSI) model and progressing through packet encapsulation and transfer mechanisms. This foundational knowledge will be critical as we delve into specific security systems in subsequent chapters.
@@ -85,7 +122,8 @@ A solid grasp of these networking fundamentals is essential for SOC analysts in 
 
 For many years, the firewall has served as the primary barrier between protected internal networks and potentially hostile external networks, playing a critical role in controlling the flow of network traffic and preventing unauthorized access.
 
-**Historical Context and Core Functionality**
+### Understanding the Historical Context and Core Functionality of Traditional Firewalls
+
 
 Traditional firewalls emerged in the late 1980s as a response to the growing need to protect internal resources from external threats. The earliest forms were packet filtering systems that operated by examining the headers of network packets. These firewalls made decisions about whether to permit or deny traffic based on a predefined set of rules that typically considered the source and destination IP addresses, port numbers, and network protocols (like TCP, UDP, ICMP). If a packet's header information matched a rule, the associated action (allow or block) was taken.[^2]
 
@@ -104,6 +142,7 @@ Traditional firewalls function as a checkpoint, inspecting and regulating networ
 
 Table 1: Example traditional firewall rules for traffic management [^3]
 
+### Stateless vs Stateful packet inspection
 **Stateless Packet Inspection**
 
 One of the earlier methods employed by traditional firewalls for traffic filtering is **stateless packet inspection**. In this mode of operation, the firewall examines each network packet in isolation, without considering its relationship to any other packets or the overall state of a network connection. The decision to allow or block a packet is based solely on the information contained within that individual packet's header, such as the source and destination IP addresses and port numbers.[^4]
@@ -147,8 +186,6 @@ Crucially, a proxy server operates at the **application layer (Layer 7)** of the
 In essence, while both proxy servers and firewalls contribute to network security, they operate at different layers of the OSI model and fulfill distinct roles. Proxy servers act as forward or reverse proxies at the application level, mediating and inspecting specific application traffic, whereas firewalls, especially traditional ones, operate at lower network layers to control broader network traffic based on defined rules.
 
 ## Understanding Web Application Firewalls (WAFs)
-
-### What is a Web Application Firewall (WAF)?
 
 A Web Application Firewall (WAF) is a network security device or service that specifically protects web applications by monitoring and filtering Hypertext Transfer Protocol (HTTP) traffic. Unlike a traditional network firewall that acts as a barrier between external and internal network traffic, a WAF sits between external users and web applications. Its primary function is to analyze all HTTP and Hypertext Transfer Protocol Secure (HTTPS) communication, detecting and blocking malicious requests before they reach the web applications or their underlying servers.
 
@@ -311,7 +348,7 @@ Creating high-quality and specific detection rules is crucial for effective thre
 Let's consider a simplified example of a signature-based IDS rule ([from the SNORT IDS/IPS community ruleset](https://www.snort.org/downloads/#rule-downloads)) designed to detect attempts to exploit a specific vulnerability in a web server:
 
 ---
-```s
+```c
 alert tcp $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS 
 (msg:"SERVER-OTHER Apache Log4j logging remote code execution attempt"; 
 flow:to_server,established;
@@ -357,30 +394,48 @@ Despite their importance, IDS/IPS systems face several challenges:[^8]
 *   **Lack of Context:** IDS alerts often lack the necessary context to understand the full scope and severity of a potential attack. Correlating IDS alerts with events from other security solutions (e.g., EDR, firewalls) is crucial but can be time-consuming.
 *   **Evasion Techniques:** Attackers employ various techniques to evade detection by IDS/IPS, such as fragmentation, flooding, obfuscation, and encryption. Encrypted traffic, in particular, poses a challenge for traditional IDS/IPS unless decryption is performed.
 *   **Complexity and Management Overhead:** Configuring and managing IDS/IPS rules and policies can be complex and require skilled analysts. Keeping signature databases and detection logic up-to-date is also an ongoing task.
-*   **Limited Visibility:** Traditional IDS/IPS deployed at the network perimeter may have limited visibility into lateral movement of threats within the internal network after an initial compromise. They also often lack sufficient visibility into cloud environments, SaaS applications, and encrypted communications.
-*   **Nonspecific / Too broad Rules:№ Generic, broad rules can trigger on common benign activities, leading to noise, while highly specific rules might miss variations of attacks. Balancing specificity and coverage is a constant challenge in rule writing.
+*   **Nonspecific / Too broad Rules** - Generic, broad rules can trigger on common benign activities, leading to noise, while highly specific rules might miss variations of attacks. Balancing specificity and coverage is a constant challenge in rule writing.
 
-Due to these challenges and the evolving threat landscape, organizations are increasingly adopting more sophisticated solutions like Network Detection and Response (NDR) platforms, which often incorporate IDS/IPS functionalities along with advanced analytics, anomaly detection, and broader visibility across modern IT environments. NDR aims to provide more contextualized alerts, better detection of advanced and insider threats, and improved incident response capabilities. While IDS/IPS remain valuable components of a security strategy, understanding their limitations is crucial for building a robust and effective defense-in-depth approach.[^9]
+While IDS/IPS remain valuable components of a security strategy, understanding their limitations is crucial for building a robust and effective defense-in-depth approach.[^9]
 
 ## What are Network Detection and Response - NDR and why was there a need for new network traffic analysis? 
 
-Network Detection and Response (NDR) is an emerging category of security solutions that leverages network traffic analysis (NTA) to provide comprehensive threat detection, investigation, and response capabilities. NDR solutions monitor and analyze network traffic in real-time, typically spanning from Layer 2 to Layer 7 of the OSI model, to identify malicious behaviors, anomalous activities, and potential security threats. This visibility extends across various network environments, including on-premises, cloud (public, private, hybrid, multi-cloud), SaaS applications, and even traffic generated by remote users.
+Network Detection and Response (NDR) is an emerging category of security solutions that leverages network traffic analysis (NTA) to provide comprehensive threat detection, investigation, and response capabilities. NDR solutions monitor and analyze network traffic in real-time, typically spanning from Layer 2 to Layer 7 of the OSI model, to identify malicious behaviors, anomalous activities, and potential security threats. This visibility extends across various network environments, including on-premises, cloud (public, private, hybrid, multi-cloud), SaaS applications, and even traffic generated by remote users.[^14]
 
-The core objective of NDR is to provide security teams with a holistic view of network activities, enabling them to detect threats that may bypass traditional perimeter defenses, such as firewalls and basic IPS, or originate from within the network itself (lateral movement). NDR aims to accurately identify and investigate malicious behaviors with a significantly lower rate of false positives compared to some legacy intrusion prevention systems.
+The core objective of NDR is to provide security teams with a holistic view of network activities, enabling them to detect threats that may bypass traditional perimeter defenses, such as firewalls and basic IPS, or originate from within the network itself (lateral movement). Those legacy systems, primarily deployed at network ingress/egress points and sometimes within internal segments, operate based on predefined signatures of known attacks. While foundational, this signature-centric approach inherently presents several limitations when confronting modern network architectures: 
 
-**How Does NDR Detect Malicious Activity?**
+-  **Limited Visibility into Lateral Movement:** Traditional perimeter-focused IDS/IPS often lack comprehensive visibility into east-west traffic within the internal network. Once an attacker bypasses the perimeter, they can move laterally across systems, compromise additional assets, and establish persistence without triggering alerts from systems primarily focused on north-south communication. This blind spot is a significant advantage for attackers aiming to deepen their foothold within an organization.
+- **Challenges with Encrypted Traffic:** The increasing prevalence of encrypted traffic, with a significant majority of web traffic utilizing HTTPS, poses a substantial challenge for traditional IDS/IPS. While SSL decryption at the perimeter is a possibility, it introduces performance overhead, increases complexity, and raises privacy concerns. Furthermore, advanced attackers may employ customized encryption methods that are difficult or impossible to decrypt. Consequently, IDS/IPS relying on payload inspection become largely ineffective against threats concealed within encrypted sessions.
+-  **Limited Insight into Unmanaged Devices and Cloud Environments:** Modern enterprise networks are increasingly heterogeneous, encompassing unmanaged devices (IoT, BYOD) and cloud-based infrastructure (IaaS, SaaS). Traditional IDS/IPS solutions often have limited or no visibility into the network activity of these assets, creating blind spots that attackers can exploit.[^14]
+
+### How Does NDR Detect Malicious Activity?
 
 NDR platforms employ a range of sophisticated techniques to detect malicious activity, moving beyond the limitations of traditional signature-based detection prevalent in many IDS/IPS systems. Key detection methodologies include:
+
+![alt text](images/8.png)
+NDR Platform features [^13]
 
 *   **Network Traffic Analysis (NTA) and Deep Packet Inspection (DPI):** NDR solutions perform real-time inspection of network communications, analyzing every transaction and reconstructing conversations through full-stream reassembly. DPI allows NDR to examine the content of data packets, going beyond basic header information to identify potentially malicious payloads or behaviors.
 *   **Behavioral Analytics:** NDR establishes baselines of normal network behavior and then uses advanced analytics and machine learning (ML) to identify deviations and anomalies that could indicate malicious activity. This behavioral approach allows NDR to detect novel or evolving threats, including low-and-slow attacks and tactics, techniques, and procedures (TTPs) that signature-based systems often miss. For instance, an NDR system might detect a user or device initiating an unusual number of connections to internal servers, which could be indicative of reconnaissance or lateral movement.
 *   **Machine Learning (ML) and Artificial Intelligence (AI):** ML algorithms are crucial for building predictive behavior models and identifying subtle indicators of compromise. AI-driven analytics help NDR solutions to correlate seemingly disparate events, reduce alert fatigue by providing contextualized and high-fidelity alerts, and prioritize incidents based on risk. For example, ML might identify a combination of unusual DNS requests followed by an SMB session to a rare internal host as suspicious, even if neither action individually triggers a signature-based alert.
 *   **Threat Intelligence Integration:** NDR solutions ingest and correlate threat intelligence feeds from various sources to enrich their analysis and identify known malicious entities, patterns, and indicators. This allows NDR to evaluate network activity against real-world risks and identify connections to known command-and-control (C2) infrastructure or malicious domains.
-*   **Anomaly Detection:** NDR differentiates between usual network operations and potentially harmful activities by evaluating traffic against established baselines. This helps in identifying unexpected communication patterns, such as a server inside the network communicating with a geographically unusual external IP address on a non-standard port, which could signal a compromised host attempting to establish a C2 channel.
+*   **Anomaly Detection:** NDR differentiates between usual network operations and potentially harmful activities by evaluating traffic against established baselines. This helps in identifying unexpected communication patterns, such as a server inside the network communicating with a geographically unusual external IP address on a non-standard port, which could signal a compromised host attempting to establish a C2 channel.[^15]
 
-**How is NDR Different from IDS/IPS Systems?**
+Through these detection methodologies for Network Traffic Analysis (NTA), NDR systems are solving the challenges of modern network infrastructures:
 
-While NDR builds upon the concepts of IDS/IPS, it offers significant advancements in detection and response capabilities. The key differences are:
+-  **Challenges of a modern distributed workplace - enhanced Visibility Across Modern Network Environments:** NDR platforms are designed to monitor a much broader and more complex environment, including on-premises networks, cloud infrastructure (public, private, hybrid, multi-cloud), SaaS applications, remote user traffic, and various network telemetry sources. By aggregating and analyzing data from these disparate sources, NDR provides a unified view of network activity, improving visibility into lateral movement and attacker progression across the entire attack surface.
+-  **Alert fatigue and lack of context for detections - Contextualized Alerts and Structured Incidents:** NDR solutions prioritize providing high-fidelity alerts enriched with contextual information. By correlating network events with threat intelligence, asset information, and user behavior, NDR can generate "structured incidents" that group related alerts, providing analysts with a clearer understanding of the attack timeline, affected entities, and potential impact. This significantly reduces alert fatigue and streamlines the investigation process.
+-  **Addressing the Challenge of Encrypted Traffic:** NDR employs intelligent methods to analyze encrypted traffic without necessarily requiring decryption. By examining metadata such as packet size, traffic patterns, connection initiation details (like TLS handshake parameters such as JA3/JA3S hashes), and communication frequencies, NDR can identify suspicious behaviors and potential command-and-control activities occurring over encrypted channels. This allows for threat detection even when payload inspection is not feasible.
+-  **Improved Incident Response and Threat Hunting Capabilities:** NDR platforms often retain historical network telemetry for extended periods. This historical look-back capability is crucial for in-depth incident investigation, allowing analysts to trace the origin of an attack, understand its full scope, and identify all affected assets, even retroactively for newly discovered threats. Many NDR solutions also provide dedicated interfaces and tools to facilitate proactive threat hunting, enabling analysts to explore network data for subtle indicators of compromise that might not trigger automated alerts.
+-  **Integration and Synergy with Other Security Technologies:** NDR is increasingly viewed as a critical component of a broader security ecosystem, often integrating with other solutions like Endpoint Detection and Response (EDR), Security Information and Event Management (SIEM), and Security Orchestration, Automation and Response (SOAR) platforms. This integration forms the basis of Extended Detection and Response (XDR), providing a unified security posture across multiple control points and enabling coordinated threat detection and response actions.[^13]
+
+![alt text](images/7.png)
+NDR Platform integration into the Security Operation Centers Technical Stack [^13]
+
+
+### How is NDR Different from IDS/IPS Systems?
+
+While NDR builds upon the concepts of IDS/IPS, it offers significant advancements in detection and response capabilities. The key differences are:[^16]
 
 | Parameter             | Intrusion Detection System (IDS)                                 | Intrusion Prevention System (IPS)                                     | Network Detection and Response (NDR)                                                                                                                                                                                             |
 | --------------------- | ------------------------------------------------------------------ | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -393,92 +448,109 @@ While NDR builds upon the concepts of IDS/IPS, it offers significant advancement
 | **Focus**             | Detecting known vulnerabilities and exploits. | Preventing known vulnerabilities and exploits.       | Detecting a wider range of threats, including sophisticated attacks, insider threats, lateral movement, and anomalous behaviors, regardless of known signatures. |
 | **Alerts**            | Can generate a high volume of alerts, including false positives. | Can cause network disruptions due to false positives triggering blocking. | Aims for higher fidelity and context-rich alerts, reducing alert fatigue through prioritization and correlation.                                                                      |
 
-It's important to note that Next-Generation Firewalls (NGFWs) often integrate traditional firewall capabilities with IPS functionalities and some level of application awareness. However, even NGFWs may lack the comprehensive network visibility and advanced behavioral analytics offered by dedicated NDR solutions. Furthermore, some NDR solutions now incorporate IDS/IPS signature-based detection as part of a layered approach.
+It's important to note that Next-Generation Firewalls (NGFWs) often integrate traditional firewall capabilities with IPS functionalities and some level of application awareness. However, even NGFWs may lack the comprehensive network visibility and advanced behavioral analytics offered by dedicated NDR solutions. Furthermore, some NDR solutions now incorporate IDS/IPS signature-based detection as part of a layered approach.[^17]
 
-**Real Examples of Attacks and How NDR Enhances Detection and Investigation:**
+### Real Examples of Attacks and How NDR Enhances Detection and Investigation:
 
 Consider the following attack scenarios and how NDR provides superior capabilities compared to traditional IDS/IPS:
 
 1.  **Lateral Movement after Initial Compromise:** Imagine an attacker successfully phishes an employee and gains access to their workstation. Traditional perimeter-based IDS/IPS might not detect subsequent internal activities as the attacker attempts to move laterally within the network to reach valuable assets.
 
     *   **IDS/IPS Limitation:** Traditional IDS/IPS, especially those focused on perimeter security, often have limited visibility into east-west (internal) network traffic. While internal IDS sensors can be deployed, they rely heavily on known signatures of malware or exploit attempts. Subtle lateral movement techniques, such as the use of legitimate administrative tools with compromised credentials, might go unnoticed.
-    *   **NDR Advantage:** NDR solutions monitor all network traffic, including internal communications. By establishing behavioral baselines for users, devices, and services, NDR can detect anomalous internal activity that deviates from normal patterns. For instance, NDR might flag a user accessing an unusually large number of file shares or initiating RDP sessions to servers they don't typically interact with. Darktrace, an NDR vendor, highlights its ability to detect "Anomalous Connection / Unusual Admin SMB Session" and "Anomalous File / Internal / Unusual SMB Script Write," which are indicative of potential lateral movement. Vectra NDR also focuses on detecting lateral movement by monitoring standard internal traffic and identifying anomalies in host patterns, as well as detecting credential theft and reuse by analyzing Kerberos traffic.
+    *   **NDR Advantage:** NDR solutions monitor all network traffic, including internal communications. By establishing behavioral baselines for users, devices, and services, NDR can detect anomalous internal activity that deviates from normal patterns. For instance, NDR might flag a user accessing an unusually large number of file shares or initiating RDP sessions to servers they don't typically interact with. NDR enables detections for suspicious network communication like "Anomalous Connection / Unusual Admin SMB Session" and "Anomalous File / Internal / Unusual SMB Script Write," which are indicative of potential lateral movement. The technology also enables monitoring standard internal traffic for identifying anomalies in host patterns, as well as detecting credential theft and reuse by analyzing Kerberos traffic.[^18]
 
 2.  **Command and Control (C2) Communication over Non-Standard Ports or Encrypted Channels:** Once an attacker has established a foothold, they often need to communicate with their C2 server to receive further instructions or exfiltrate data. Attackers frequently use non-standard ports or encrypt their communication to evade detection.
 
     *   **IDS/IPS Limitation:** Signature-based IDS/IPS might fail to detect C2 traffic if it doesn't match a known signature, especially if it's using a custom protocol, a non-standard port, or encryption. While some IPS can perform TLS inspection, this can introduce complexity and potential security risks.
-    *   **NDR Advantage:** NDR solutions can analyze network traffic patterns and behaviors to identify suspicious C2 activity even over encrypted channels without necessarily decrypting the content. By looking for anomalies in communication patterns, such as unusual connection intervals, small and consistent outbound traffic flows, or connections to geographically anomalous or newly observed domains, NDR can detect potential C2 channels. Vectra NDR, for example, understands a wide range of C2 behaviors, including attempts to imitate browser behavior, use of hidden tunnels, peer-to-peer communication, and anonymization techniques like TOR. Some WAFs can also log per-request DNS activity, which can help in identifying callbacks to C2 nodes.
+    *   **NDR Advantage:** NDR solutions can analyze network traffic patterns and behaviors to identify suspicious C2 activity even over encrypted channels without necessarily decrypting the content. By looking for anomalies in communication patterns, such as unusual connection intervals, small and consistent outbound traffic flows, or connections to geographically anomalous or newly observed domains, NDR can detect potential C2 channels. NDRs typically can parse and detect a wide range of C2 behaviors, including attempts to imitate browser behavior, use of hidden tunnels, peer-to-peer communication, and anonymization techniques like TOR.
 
 3.  **Zero-Day Exploits like Log4j:** When a new, previously unknown vulnerability (zero-day) is exploited, traditional signature-based security systems are often ineffective until a signature is created and deployed.
 
     *   **IDS/IPS Limitation:** IDS/IPS relies heavily on signatures of known vulnerabilities. During the initial stages of a zero-day attack, before a signature is available, IDS/IPS would likely not generate an alert based on the exploit itself. As highlighted with the Log4j vulnerability, traditional IDS might not detect the initial exploitation attempts until vendor-specific signatures are created and deployed.
-    *   **NDR Advantage:** NDR's behavioral analysis and anomaly detection capabilities can potentially identify exploitation attempts even for zero-day vulnerabilities by detecting unusual network traffic patterns or application behavior triggered by the exploit. While NDR might not have specific knowledge of the vulnerability, it can detect the resulting anomalous activity. For example, with Log4j, even with obfuscated exploit attempts, NDR could potentially detect unusual LDAP or RMI traffic originating from unexpected internal hosts or to untrusted external destinations. Corelight emphasizes the importance of having telemetry to correlate initial exploit attempts with secondary malicious activities like downloading payloads or establishing C2 connections. NDR solutions that retain historical network data allow security teams to retroactively investigate their networks for signs of compromise once a new vulnerability like Log4j is disclosed.
+    *   **NDR Advantage:** NDR's behavioral analysis and anomaly detection capabilities can potentially identify exploitation attempts even for zero-day vulnerabilities by detecting unusual network traffic patterns or application behavior triggered by the exploit. While NDR might not have specific knowledge of the vulnerability, it can detect the resulting anomalous activity. For example, with Log4j, even with obfuscated exploit attempts, NDR could potentially detect unusual LDAP or RMI traffic originating from unexpected internal hosts or to untrusted external destinations. It's of crucial importance to have the necessary telemetry to correlate initial exploit attempts with secondary malicious activities like downloading payloads or establishing C2 connections. NDR solutions that retain historical network data allow security teams to retroactively investigate their networks for signs of compromise once a new vulnerability like Log4j is disclosed.
 
 4.  **Data Exfiltration:** Attackers ultimately aim to exfiltrate sensitive data. Detecting this activity can be challenging if it blends in with normal network traffic or occurs over authorized channels.
 
     *   **IDS/IPS Limitation:** Detecting data exfiltration with IDS/IPS often relies on identifying known malicious destinations or large outbound data transfers on specific ports. Subtle or staged data exfiltration might be missed.
-    *   **NDR Advantage:** NDR can establish baselines for normal data transfer volumes and patterns for specific hosts and users. It can then detect anomalous outbound data transfers, such as a server suddenly sending a large amount of data to an unusual external location or a user uploading an excessive amount of data to a personal cloud storage service. Vectra NDR monitors the network for devices acquiring and sending data at abnormal rates and can also detect data staging activities within the network.
+    *   **NDR Advantage:** NDR can establish baselines for normal data transfer volumes and patterns for specific hosts and users. It can then detect anomalous outbound data transfers, such as a server suddenly sending a large amount of data to an unusual external location or a user uploading an excessive amount of data to a personal cloud storage service. NDR can monitor the network for devices acquiring and sending data at abnormal rates and can also detect data staging activities within the network.[^19]
 
-**Benefits of NDR for Security Teams:**
+## Understanding  Next-Generation Firewalls (NGFWs)
 
-The deployment of NDR solutions offers several key benefits for security operations teams:
+### What are Next-Generation Firewalls (NGFWs)?
 
-*   **Enhanced Visibility:** NDR provides a comprehensive view of network activity across the entire digital infrastructure, including cloud, internal networks, and unmanaged devices, filling visibility gaps left by traditional security tools.
-*   **Improved Threat Detection:** By leveraging behavioral analytics, ML/AI, and threat intelligence, NDR can detect a wider range of sophisticated threats, including zero-day attacks, insider threats, and evasive malware, with higher accuracy and lower false positive rates compared to signature-based systems.
-*   **Faster Incident Response:** NDR provides context-rich alerts and facilitates rapid investigation by offering forensic-level evidence, historical network data, and the ability to reconstruct network conversations. This enables security analysts to quickly understand the scope and impact of an incident and take appropriate remediation actions.
-*   **Reduced Alert Fatigue:** By correlating events and providing prioritized, high-fidelity alerts, NDR helps reduce the overwhelming volume of alerts that often plague security teams using traditional IDS/IPS. This allows analysts to focus on genuine threats.
-*   **Proactive Threat Hunting:** The detailed network visibility and analytical capabilities of NDR empower security analysts to proactively hunt for hidden threats and indicators of compromise that might not have triggered automated alerts.
-*   **Support for Unmanaged Devices:** NDR can provide visibility into the activity of unmanaged devices on the network, which are often blind spots for endpoint-focused security solutions.
-*   **Integration with Security Ecosystem:** NDR solutions can integrate with other security tools like EDR, SIEM, and SOAR platforms to create a more unified and effective extended detection and response (XDR) capability, streamlining workflows and enhancing overall security posture.
+A Next-Generation Firewall (NGFW) represents a modern evolution in network security devices, specifically engineered to safeguard business networks against advanced cyber threats. Unlike traditional firewalls that primarily focus on basic packet filtering and stateful inspection based on IP addresses, ports, and protocols, NGFWs provide deeper control over network traffic and integrate advanced security services. The primary function of an NGFW is to offer enhanced security features, including deep packet filtering, application control, and an integrated Intrusion Prevention System (IPS). They are designed to go beyond the foundational capabilities of traditional firewalls by incorporating intelligent, context-aware security features to combat sophisticated threats at the application level. By thoroughly examining the content within packets and filtering based on applications, NGFWs extend their operational reach to Layer 7 (the application layer) of the OSI model, a significant advancement from earlier firewall technologies that were largely confined to operating up to Layer 4 (the transport layer).[^20]
 
-**Conclusion:**
+### How do NGFWs Compare to Traditional Firewalls?
 
-Network Detection and Response (NDR) represents a significant evolution in network security, offering a more proactive and comprehensive approach to detecting and responding to modern cyber threats. By leveraging advanced network traffic analysis, behavioral analytics, and machine learning, NDR overcomes many of the limitations of traditional IDS/IPS systems, providing security teams with enhanced visibility, higher-fidelity alerts, and the ability to effectively investigate and mitigate sophisticated attacks, including lateral movement, C2 communications, zero-day exploits, and data exfiltration. As the threat landscape continues to evolve, the intelligent insights and response capabilities offered by NDR are becoming increasingly essential for maintaining a robust security posture and protecting organizational assets. Our analysts must develop a strong understanding of NDR to effectively leverage these technologies in our daily operations.
+NGFWs and traditional firewalls both serve as crucial components within a corporate cybersecurity architecture, acting as the first line of defense for network systems by keeping out unwanted traffic. While they share the core function of controlling network traffic, significant differences exist between the two that impact their ability to provide protection against modern cybersecurity threats.
 
-## Next Generation Firewall - NGFW
+Traditional firewalls handle basic tasks like filtering traffic based on IP addresses or ports. They primarily operate by a set of defined rules that control network traffic flow based on these parameters. They can perform stateful or stateless inspection. In stateless inspection, each packet is examined individually using static information, while stateful firewalls examine the entire context of the network connection, providing higher security by tracking the state of active connections. Many traditional firewalls also include Network Address Translation (NAT) functionality. However, they lack the ability to control applications running over the network effectively and typically operate at OSI model Layers 3 and 4, focusing on data transfer and network traffic.
+
+In contrast, NGFWs seamlessly integrate advanced networking and robust security. They combine stateful packet inspection with DPI for superior threat detection by thoroughly analyzing the content of data packets to detect and block malicious traffic that might bypass traditional firewalls. DPI enables the thorough examining the content of the data packets. This capability enables security devices equipped with DPI to identify and block malicious traffic that might otherwise slip through traditional firewalls and stateful inspection mechanisms. By scrutinizing the payload, DPI can detect a wide range of threats, including known malware signatures, exploit attempts targeting vulnerabilities, and deviations from normal network activity, including novel or low-and-slow attacks. This is achieved by examining the content of data packets, allowing for the detection of malicious code, exploit patterns, and unusual traffic behavior.
+
+Another key advantage of NGFWs is their built-in IPS, which actively scans traffic for signs of attack and takes immediate action to block malicious activity, including advanced persistent threats and zero-day vulnerabilities. NGFWs leverage global threat intelligence feeds to stay updated on the latest threats, enabling real-time protection against emerging cyber threats. Operating on multiple layers, including the application layer (Layer 7), NGFWs offer granular control over traffic and better protection against advanced threats by identifying and controlling specific applications. While both support VPNs, NGFWs offer enhanced features and better control over encrypted traffic. They also provide more detailed and customizable reporting, offering insights into application usage, user behavior, and security events.[^20]
+
+![alt text](images/9.webp)
+NGFW Features and capabilities [^20]
+
+| Parameter                           | Traditional Firewall                                                                                                                               | NGFW                                                                                                                                                                                                                         |
+| :---------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Inspection**                      | Uses stateful or stateless inspection, tracking the state of active connections. Examines network packet headers, looking at OSI Layers 2-4. | Combines stateful inspection with Deep Packet Inspection (DPI) for better threat detection. Operates all the way up to the application layer or OSI Layer 7 by inspecting packet content.                         |
+| **Packet Filtering**                | Filters packets based on headers like IP addresses and port numbers. Provides standard packet inspection, examining header information.      | Analyzes both packet headers and contents with DPI, providing granular segmentation. Examines the content of each packet, including its source.                                                        |
+| **Intrusion Prevention System (IPS)** | Lacks IPS; offers basic defense against threats. Typically deployed alongside separate IPS solutions.                                | Built-in IPS to block advanced threats and blacklist future traffic from malicious sources. Commonly integrates IPS functionality. Actively scans traffic for signs of attack and takes immediate action. |
+| **Threat Intelligence**             | No threat intelligence integration; relies on administrator-defined rules. May rely on outside systems for threat intelligence.        | Uses threat intelligence feeds from global sources for real-time updates and the ability to block new attack patterns. Can automatically adjust rules based on threat intelligence.                |
+| **Working Layer**                   | Works primarily at the network layer (Layer 3) of the OSI model. Operates from Layer 1 to Layer 4.                                 | Operates on multiple layers, including the application layer (Layer 7) and network layer (Layer 3), offering granular control. Works through Layers 2 to Layer 7.                                             |
+| **Application Awareness**           | Lacks application awareness and control, focusing mainly on basic traffic management. Filters based on port numbers.                 | Identifies and controls specific applications running over the network, even if they use non-standard ports. Enables setting application-specific rules.                                              |
+| **Virtual Private Networks (VPNs)**   | Allow access to VPNs to keep private networks secure.                                                                                   | Offer enhanced VPN features with better control and monitoring of encrypted traffic compared to traditional firewalls.                                                                                      |
+| **Network Address Translation (NAT)** | Often includes NAT functionality to mask internal IP addresses.                                                                           | Offers more advanced NAT capabilities for complex, modern networks.                                                                                                                                                   |
+| **Reporting**                       | Typically offers limited logging and basic reporting of security functions only. Security analysts may need other tools for usable formats. | Provides more detailed and actionable reporting with insights into application usage, user behavior, and security policy enforcement. Organizations can pull customized reports with near real-time detail.       |
+
+### What Features and Capabilities do They Support?
+
+Next-Generation Firewalls support a comprehensive suite of features and capabilities designed to enhance network security:[^21]
+
+*   **Deep Packet Inspection (DPI):** Thoroughly analyzes the content of data packets, enabling the detection and blocking of malicious traffic that might evade traditional firewalls.
+*   **Integrated Intrusion Prevention System (IPS):** Actively scans traffic for signs of attack and takes immediate action to block malicious activity, often bridging the gap between vulnerability emergence and patch deployment.
+*   **Application Awareness and Control:** Identifies and manages applications running over the network, even on non-standard ports, allowing for application-specific security rules and control over their network traffic and bandwidth usage.
+*   **Threat Intelligence Feeds:** Utilizes threat intelligence from global sources to stay updated on emerging threats, enabling the blocking of new attack patterns and providing real-time protection.
+*   **Encrypted Traffic Inspection (TLS/SSL Inspection):** Offers the ability to decrypt, inspect for threats, and re-encrypt TLS/SSL-encrypted traffic, ensuring that malware or data exfiltration hidden in encryption is detected. While some Network Detection and Response (NDR) solutions aim to analyze encrypted traffic without full decryption by looking at patterns and metadata, DPI with decryption offers a deeper level of content visibility.
+*   **URL Filtering:** Controls access to websites based on categories and reputation, preventing users from accessing malicious or inappropriate sites.
+*   **Data Loss Prevention (DLP):** Detects attempted exfiltration of sensitive or proprietary information from the corporate network.
+*   **IoT Threat Prevention:** Detects and can quarantine unmanaged or rogue IoT devices that may contain vulnerabilities.
+*   **SD-WAN Security:** Some NGFWs include SD-WAN capabilities to optimize network routing while integrating security functions for a more secure and usable corporate WAN.
+*   **Compliance Management:** Can help identify compliance gaps and collect information required for regulatory reporting.
+*   **Granular Access Policies:** Enforces security policies based on comprehensive data, including user identity, enabling more nuanced security controls.
+*   **Logging and Reporting:** Provides detailed and customizable reports with insights into application usage, threats detected, and security events, aiding in security analysis, ROI demonstration, and compliance reporting.
+*   **Virtual Private Network (VPN) Capabilities:** Allows secure remote access to the network, often with enhanced features compared to traditional firewalls.
+
+Next-Generation Firewalls represent a significant evolution in network security, providing a robust defense against the increasingly complex and sophisticated cyber threat landscape. By moving beyond the basic packet filtering and stateful inspection of traditional firewalls, NGFWs offer deep packet inspection, integrated intrusion prevention, application awareness, and the utilization of threat intelligence to provide a multi-layered security approach. For SOC analysts, understanding the advanced features and capabilities of NGFWs, and how they address the limitations of their predecessors, is crucial for building a resilient security posture capable of effectively detecting, mitigating, and responding to the diverse array of modern cyber threats. Recognizing the complexities that NGFWs are designed to solve underscores their indispensable role in securing contemporary network environments.
+
+## Conclusion
+
+In conclusion, the mastery of networking fundamentals, from the foundational OSI and TCP/IP models to the nuanced operation of security technologies like traditional firewalls, proxies, WAFs, IDS/IPS, NDR, and NGFWs, is indispensable for the experienced SOC analyst. This paper has outlined the evolution of network security, highlighting the specific roles and operational layers of each technology, as well as the increasing sophistication required to defend against contemporary cyber threats. By understanding packet flows, addressing schemes, and the detection methodologies employed by these diverse systems, analysts are better equipped to interpret network traffic, analyze security alerts, conduct thorough incident investigations, and formulate effective security rules and policies. The shift towards more complex network architectures and the rise of advanced threats necessitate a comprehensive understanding of both the basic principles and the advanced tools available to us, ensuring our ability to maintain a robust security posture and effectively safeguard the organization's digital assets.
 
 # References
 
-Aztech IT. (2023, December 14). *Next-generation firewall (NGFW) vs traditional firewall*. Aztechit.co.uk. [https://www.aztechit.co.uk/blog/next-generation-firewall-ngfw-vs-traditional-firewall](https://www.aztechit.co.uk/blog/next-generation-firewall-ngfw-vs-traditional-firewall)
-
-Check Point Software Technologies. *Next-generation firewall vs. traditional firewall - Check Point Software*. Checkpoint.com. [https://www.checkpoint.com/cyber-hub/network-security/what-is-next-generation-firewall-ngfw/next-generation-firewall-vs-traditional-firewall/](https://www.checkpoint.com/cyber-hub/network-security/what-is-next-generation-firewall-ngfw/next-generation-firewall-vs-traditional-firewall/)
-
-[^10] Cloudflare. *What is a WAF? | Web application firewall explained*. Cloudflare.com. [https://www.cloudflare.com/learning/ddos/glossary/web-application-firewall-waf/](https://www.cloudflare.com/learning/ddos/glossary/web-application-firewall-waf/)
-
-Corelight. *NDR vs. IDS: Which is best for threat detection?* Corelight.com. [https://corelight.com/resources/glossary/ndr-vs-ids](https://corelight.com/resources/glossary/ndr-vs-ids)
-
-Darktrace Threat Research Team, Nobregas, N., Foulger, E., & Trail, R. (2024). *Detecting & investigating lateral movement*. Darktrace.com. [https://darktrace.com/blog/a-security-analysts-view-detecting-and-investigating-lateral-movement-with-darktrace](https://darktrace.com/blog/a-security-analysts-view-detecting-and-investigating-lateral-movement-with-darktrace)
-
-ExtraHop. (2019, February 7). *NDR vs. IPS for intrusion prevention, detection, and response*. Extrahop.com. [https://www.extrahop.com/blog/network-detection-response-vs-intrusion-prevention-systems](https://www.extrahop.com/blog/network-detection-response-vs-intrusion-prevention-systems)
-
-ExtraHop. (2025, January 29). *Investigating a data leak with Reveal(x) | ExtraHop*. Extrahop.com. [https://www.extrahop.com/blog/investigating-fake-chrome-extension-postman-part-1](https://www.extrahop.com/blog/investigating-fake-chrome-extension-postman-part-1)
-
-[^11] F5. *What is a web application firewall (WAF)?* F5.com. [https://www.f5.com/glossary/web-application-firewall-waf](https://www.f5.com/glossary/web-application-firewall-waf)
-
-[^12] Fortinet. *WAF vs firewall: Web application and network firewalls*. Fortinet.com. [https://www.fortinet.com/resources/cyberglossary/waf-vs-firewall](https://www.fortinet.com/resources/cyberglossary/waf-vs-firewall)
-
-Fortinet. *What is network detection and response (NDR)?* Fortinet.com. [https://www.fortinet.com/resources/cyberglossary/what-is-ndr](https://www.fortinet.com/resources/cyberglossary/what-is-ndr)
-
-[^4] FS Community. *NGFW vs. traditional firewall: What’s the difference.* Community.fs.com. [https://community.fs.com/article/ngfw-vs-traditional-firewall-whats-the-difference.html](https://community.fs.com/article/ngfw-vs-traditional-firewall-whats-the-difference.html)
-
 [^1] FS.com (FS), (2022, April 1). *TCP/IP vs. OSI: What’s the difference between them?* [https://www.fs.com/blog/tcpip-vs-osi-whats-the-difference-between-the-two-models-1446.html.](https://www.fs.com/blog/tcpip-vs-osi-whats-the-difference-between-the-two-models-1446.html.)
-
-Naidu, K. (2000). *Firewall checklist* (SANS Institute). SANS Institute. [https://www.sans.org/media/score/checklists/FirewallChecklist.pdf](https://www.sans.org/media/score/checklists/FirewallChecklist.pdf)
-
-[^7] Palo Alto Networks. *IPS. vs. IDS vs. Firewall: What are the differences?* Paloaltonetworks.com. [https://www.paloaltonetworks.com/cyberpedia/firewall-vs-ids-vs-ips](https://www.paloaltonetworks.com/cyberpedia/firewall-vs-ids-vs-ips)
-
-[^3] Palo Alto Networks. *What are firewall rules? | Firewall rules explained*. Paloaltonetworks.com. [https://www.paloaltonetworks.com/cyberpedia/what-are-firewall-rules](https://www.paloaltonetworks.com/cyberpedia/what-are-firewall-rules)
-
-[^5] Palo Alto Networks. *What is a Proxy Firewall? | Proxy firewall definition*. [https://www.paloaltonetworks.com/cyberpedia/what-is-a-proxy-firewall](https://www.paloaltonetworks.com/cyberpedia/what-is-a-proxy-firewall)
-
 [^2] Palo Alto Networks. *What is a firewall? | Firewall definition*. Paloaltonetworks.com. [https://www.paloaltonetworks.com/cyberpedia/what-is-a-firewall](https://www.paloaltonetworks.com/cyberpedia/what-is-a-firewall)
-
+[^3] Palo Alto Networks. *What are firewall rules? | Firewall rules explained*. Paloaltonetworks.com. [https://www.paloaltonetworks.com/cyberpedia/what-are-firewall-rules](https://www.paloaltonetworks.com/cyberpedia/what-are-firewall-rules)
+[^4] FS Community. *NGFW vs. traditional firewall: What’s the difference.* Community.fs.com. [https://community.fs.com/article/ngfw-vs-traditional-firewall-whats-the-difference.html](https://community.fs.com/article/ngfw-vs-traditional-firewall-whats-the-difference.html)
+[^5] Palo Alto Networks. *What is a Proxy Firewall? | Proxy firewall definition*. [https://www.paloaltonetworks.com/cyberpedia/what-is-a-proxy-firewall](https://www.paloaltonetworks.com/cyberpedia/what-is-a-proxy-firewall)
 [^6] Palo Alto Networks. *What is an intrusion detection system?* Paloaltonetworks.com. [https://www.paloaltonetworks.com/cyberpedia/what-is-an-intrusion-detection-system-ids](https://www.paloaltonetworks.com/cyberpedia/what-is-an-intrusion-detection-system-ids)
-
+[^7] Palo Alto Networks. *IPS. vs. IDS vs. Firewall: What are the differences?* Paloaltonetworks.com. [https://www.paloaltonetworks.com/cyberpedia/firewall-vs-ids-vs-ips](https://www.paloaltonetworks.com/cyberpedia/firewall-vs-ids-vs-ips)
 [^8] Stamus Networks. (2023, November 28). *What is the difference between IDS/IPS and NDR?* Stamus-networks.com. [https://www.stamus-networks.com/blog/what-is-the-difference-between-ids/ips-and-ndr](https://www.stamus-networks.com/blog/what-is-the-difference-between-ids/ips-and-ndr)
-
-Trend Micro. *What is network detection and response (NDR)?* Trendmicro.com. [https://www.trendmicro.com/en_us/what-is/xdr/ndr.html](https://www.trendmicro.com/en_us/what-is/xdr/ndr.html)
-
 [^9] Vectra AI. (2023). *Why security teams are replacing IDS with NDR*. Vectra AI. [https://cdn.prod.website-files.com/64e50cbe2b6f932c04238c14/6630b7eeb51ce629c0f4a006_Why-Security-Teams-are-Replacing-IDS-with-NDR.pdf](https://cdn.prod.website-files.com/64e50cbe2b6f932c04238c14/6630b7eeb51ce629c0f4a006_Why-Security-Teams-are-Replacing-IDS-with-NDR.pdf)
+[^10] Cloudflare. *What is a WAF? | Web application firewall explained*. Cloudflare.com. [https://www.cloudflare.com/learning/ddos/glossary/web-application-firewall-waf/](https://www.cloudflare.com/learning/ddos/glossary/web-application-firewall-waf/)
+[^11] F5. *What is a web application firewall (WAF)?* F5.com. [https://www.f5.com/glossary/web-application-firewall-waf](https://www.f5.com/glossary/web-application-firewall-waf)
+[^12] Fortinet. *WAF vs firewall: Web application and network firewalls*. Fortinet.com. [https://www.fortinet.com/resources/cyberglossary/waf-vs-firewall](https://www.fortinet.com/resources/cyberglossary/waf-vs-firewall)
+[^13] Cerny. F., Progress. *What is Network Detection and Response and How Does it Work?*, February 09, 2023 [https://www.progress.com/blogs/what-is-network-detection-and-response](https://www.progress.com/blogs/what-is-network-detection-and-response)
+[^14] Fortinet. *What is network detection and response (NDR)?* Fortinet.com. [https://www.fortinet.com/resources/cyberglossary/what-is-ndr](https://www.fortinet.com/resources/cyberglossary/what-is-ndr)
+[^15] Trend Micro. *What is network detection and response (NDR)?* Trendmicro.com. [https://www.trendmicro.com/en_us/what-is/xdr/ndr.html](https://www.trendmicro.com/en_us/what-is/xdr/ndr.html)
+[^16] Corelight. *NDR vs. IDS: Which is best for threat detection?* Corelight.com. [https://corelight.com/resources/glossary/ndr-vs-ids](https://corelight.com/resources/glossary/ndr-vs-ids)
+[^17] ExtraHop. (2019, February 7). *NDR vs. IPS for intrusion prevention, detection, and response*. Extrahop.com. [https://www.extrahop.com/blog/network-detection-response-vs-intrusion-prevention-systems](https://www.extrahop.com/blog/network-detection-response-vs-intrusion-prevention-systems)
+[^18] Darktrace Threat Research Team, Nobregas, N., Foulger, E., & Trail, R. (2024). *Detecting & investigating lateral movement*. Darktrace.com. [https://darktrace.com/blog/a-security-analysts-view-detecting-and-investigating-lateral-movement-with-darktrace](https://darktrace.com/blog/a-security-analysts-view-detecting-and-investigating-lateral-movement-with-darktrace)
+[^19] ExtraHop. (2025, January 29). *Investigating a data leak with Reveal(x) | ExtraHop*. Extrahop.com. [https://www.extrahop.com/blog/investigating-fake-chrome-extension-postman-part-1](https://www.extrahop.com/blog/investigating-fake-chrome-extension-postman-part-1)
+[^20] Aztech IT. (2023, December 14). *Next-generation firewall (NGFW) vs traditional firewall*. Aztechit.co.uk. [https://www.aztechit.co.uk/blog/next-generation-firewall-ngfw-vs-traditional-firewall](https://www.aztechit.co.uk/blog/next-generation-firewall-ngfw-vs-traditional-firewall)
+[^21] Check Point Software Technologies. *Next-generation firewall vs. traditional firewall - Check Point Software*. Checkpoint.com. [https://www.checkpoint.com/cyber-hub/network-security/what-is-next-generation-firewall-ngfw/next-generation-firewall-vs-traditional-firewall/](https://www.checkpoint.com/cyber-hub/network-security/what-is-next-generation-firewall-ngfw/next-generation-firewall-vs-traditional-firewall/)
 
 **Last Accessed:** 6th of April 2024.
