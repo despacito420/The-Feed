@@ -281,13 +281,14 @@ An **IDS** is primarily a monitoring system that analyzes network traffic for su
 In contrast, an **IPS** takes a more active role in network security. Similar to an IDS, an IPS analyzes network traffic for malicious activities and vulnerabilities. However, when a threat is identified, an IPS can take automated actions to prevent the threat from compromising the network. These preventative measures can include blocking the malicious traffic, dropping harmful data packets, blocking the source IP address, resetting the connection, or triggering other security mechanisms. An IPS is typically deployed in the direct path of network traffic (inline), allowing it to scrutinize and act on threats in real-time.
 
 ![alt text](images/5.webp)
-Difference between IDS and IPS deployed within a network 
+Difference between IDS and IPS deployed within a network
+
 | 	                                | IPS Deployment                                        |  	IDS Deployment              |
 |-----------------------------------|-------------------------------------------------------|-------------------------------|              
 |Placement in Network Infrastructure| Part of the direct line of communication (inline)     |Outside direct line of communication (out-of-band)|
 |System type                        | Active (monitor & automatically defend) and/or passive|Passive (monitor & notify)     |
 |Detection Mechanisms 	            |1. Statistical anomaly-based detection<br>2. Signature detection:<br>- Exploit-facing signatures<br>- Vulnerability-facing signatures|1. Signature detection:<br>- Exploit-facing signatures
----
+
 Table 3 - Difference between IDS and IPS systems 
 
 ### Differences Between IDS/IPS and Firewalls, WAFs
@@ -389,6 +390,8 @@ This Snort rule is designed to detect attempts to exploit the Log4j vulnerabilit
 `classtype:attempted-user`: This classifies the event as an attempted user-level attack.
 
 `sid:58722; rev:5;`: sid is the signature ID, a unique identifier for this rule. rev is the revision number, indicating updates to the rule.
+
+---
 
 In short, this rule acts as a safeguard against Log4j exploits by monitoring incoming HTTP traffic and looking for the telltale `"${jndi:"` string in the URI. If found, it logs the event and, based on the defined policies, may drop the malicious connection.
 
@@ -536,26 +539,47 @@ In conclusion, the mastery of networking fundamentals, from the foundational OSI
 
 ## References
 
+
 Aztech IT. (2023, December 14). *Next-generation firewall (NGFW) vs traditional firewall*. Aztechit.co.uk. [https://www.aztechit.co.uk/blog/next-generation-firewall-ngfw-vs-traditional-firewall](https://www.aztechit.co.uk/blog/next-generation-firewall-ngfw-vs-traditional-firewall)\
+
 Cerny. F., Progress. *What is Network Detection and Response and How Does it Work?*, February 09, 2023 [https://www.progress.com/blogs/what-is-network-detection-and-response](https://www.progress.com/blogs/what-is-network-detection-and-response)\
-Check Point Software Technologies. *Next-generation firewall vs. traditional firewall - Check Point Software*. Checkpoint.com. [https://www.checkpoint.com/cyber-hub/network-security/what-is-next-generation-firewall-ngfw/next-generation-firewall-vs-traditional-firewall/](https://www.checkpoint.com/cyber-hub/network-security/what-is-next-generation-firewall-ngfw/next-generation-firewall-vs-traditional-firewall/)
+
+Check Point Software Technologies. *Next-generation firewall vs. traditional firewall - Check Point Software*. Checkpoint.com. [https://www.checkpoint.com/cyber-hub/network-security/what-is-next-generation-firewall-ngfw/next-generation-firewall-vs-traditional-firewall/](https://www.checkpoint.com/cyber-hub/network-security/what-is-next-generation-firewall-ngfw/next-generation-firewall-vs-traditional-firewall/)\
+
 Cloudflare. *What is a WAF? - Web application firewall explained*. Cloudflare.com. [https://www.cloudflare.com/learning/ddos/glossary/web-application-firewall-waf/](https://www.cloudflare.com/learning/ddos/glossary/web-application-firewall-waf/)\
+
 Corelight. *NDR vs. IDS: Which is best for threat detection?* Corelight.com. [https://corelight.com/resources/glossary/ndr-vs-ids](https://corelight.com/resources/glossary/ndr-vs-ids)\
+
 Darktrace Threat Research Team, Nobregas, N., Foulger, E., & Trail, R. (2024). *Detecting & investigating lateral movement*. Darktrace.com. [https://darktrace.com/blog/a-security-analysts-view-detecting-and-investigating-lateral-movement-with-darktrace](https://darktrace.com/blog/a-security-analysts-view-detecting-and-investigating-lateral-movement-with-darktrace)\
+
 ExtraHop. (2019, February 7). *NDR vs. IPS for intrusion prevention, detection, and response*. Extrahop.com. [https://www.extrahop.com/blog/network-detection-response-vs-intrusion-prevention-systems](https://www.extrahop.com/blog/network-detection-response-vs-intrusion-prevention-systems)\
+
 ExtraHop. (2025, January 29). *Investigating a data leak with Reveal(x) - ExtraHop*. Extrahop.com. [https://www.extrahop.com/blog/investigating-fake-chrome-extension-postman-part-1](https://www.extrahop.com/blog/investigating-fake-chrome-extension-postman-part-1)\
+
 F5. *What is a web application firewall (WAF)?* F5.com. [https://www.f5.com/glossary/web-application-firewall-waf](https://www.f5.com/glossary/web-application-firewall-waf)\
+
 Fortinet. *WAF vs firewall: Web application and network firewalls*. Fortinet.com. [https://www.fortinet.com/resources/cyberglossary/waf-vs-firewall](https://www.fortinet.com/resources/cyberglossary/waf-vs-firewall)\
+
 Fortinet. *What is network detection and response (NDR)?* Fortinet.com. [https://www.fortinet.com/resources/cyberglossary/what-is-ndr](https://www.fortinet.com/resources/cyberglossary/what-is-ndr)\
+
 FS Community. *NGFW vs. traditional firewall: What’s the difference.* Community.fs.com. [https://community.fs.com/article/ngfw-vs-traditional-firewall-whats-the-difference.html](https://community.fs.com/article/ngfw-vs-traditional-firewall-whats-the-difference.html)\
+
 FS.com (FS), (2022, April 1). *TCP/IP vs. OSI: What’s the difference between them?* [https://www.fs.com/blog/tcpip-vs-osi-whats-the-difference-between-the-two-models-1446.html.](https://www.fs.com/blog/tcpip-vs-osi-whats-the-difference-between-the-two-models-1446.html.)\
+
 Palo Alto Networks. *IPS. vs. IDS vs. Firewall: What are the differences?* Paloaltonetworks.com. [https://www.paloaltonetworks.com/cyberpedia/firewall-vs-ids-vs-ips](https://www.paloaltonetworks.com/cyberpedia/firewall-vs-ids-vs-ips)\
+
 Palo Alto Networks. *What are firewall rules? - Firewall rules explained*. Paloaltonetworks.com. [https://www.paloaltonetworks.com/cyberpedia/what-are-firewall-rules](https://www.paloaltonetworks.com/cyberpedia/what-are-firewall-rules)\
+
 Palo Alto Networks. *What is a firewall? - Firewall definition*. Paloaltonetworks.com. [https://www.paloaltonetworks.com/cyberpedia/what-is-a-firewall](https://www.paloaltonetworks.com/cyberpedia/what-is-a-firewall)\
+
 Palo Alto Networks. *What is a Proxy Firewall? - Proxy firewall definition*. [https://www.paloaltonetworks.com/cyberpedia/what-is-a-proxy-firewall](https://www.paloaltonetworks.com/cyberpedia/what-is-a-proxy-firewall)\
+
 Palo Alto Networks. *What is an intrusion detection system?* Paloaltonetworks.com. [https://www.paloaltonetworks.com/cyberpedia/what-is-an-intrusion-detection-system-ids](https://www.paloaltonetworks.com/cyberpedia/what-is-an-intrusion-detection-system-ids)\
+
 Stamus Networks. (2023, November 28). *What is the difference between IDS/IPS and NDR?* Stamus-networks.com. [https://www.stamus-networks.com/blog/what-is-the-difference-between-ids/ips-and-ndr](https://www.stamus-networks.com/blog/what-is-the-difference-between-ids/ips-and-ndr)\
+
 Trend Micro. *What is network detection and response (NDR)?* Trendmicro.com. [https://www.trendmicro.com/en_us/what-is/xdr/ndr.html](https://www.trendmicro.com/en_us/what-is/xdr/ndr.html)\
-Vectra AI. (2023). *Why security teams are replacing IDS with NDR*. Vectra AI. [https://cdn.prod.website-files.com/64e50cbe2b6f932c04238c14/6630b7eeb51ce629c0f4a006_Why-Security-Teams-are-Replacing-IDS-with-NDR.pdf](https://cdn.prod.website-files.com/64e50cbe2b6f932c04238c14/6630b7eeb51ce629c0f4a006_Why-Security-Teams-are-Replacing-IDS-with-NDR.pdf)\
+
+Vectra AI. (2023). *Why security teams are replacing IDS with NDR*. Vectra AI. [https://cdn.prod.website-files.com/64e50cbe2b6f932c04238c14/6630b7eeb51ce629c0f4a006_Why-Security-Teams-are-Replacing-IDS-with-NDR.pdf](https://cdn.prod.website-files.com/64e50cbe2b6f932c04238c14/6630b7eeb51ce629c0f4a006_Why-Security-Teams-are-Replacing-IDS-with-NDR.pdf)
 
 **Last Accessed:** 6th of April 2024.
