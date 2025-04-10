@@ -56,6 +56,7 @@ For experienced Security Operations Center (SOC) analysts, a robust comprehensio
 The OSI model is a conceptual framework that standardizes the functions of a telecommunication or computing system in terms of the communication functions of its components. It provides a layered approach, dividing the complex process of network communication into seven distinct layers, each with specific responsibilities. Understanding these layers is crucial for deciphering network traffic, identifying anomalies, and comprehending the operational context of various security technologies.
 
 ![alt text](images/1.png)
+
 OSI Layer Model Graphical representation 
 
 The seven layers of the OSI model, from the lowest to the highest, are:
@@ -79,6 +80,7 @@ The seven layers of the OSI model, from the lowest to the highest, are:
 While the OSI model is a conceptual reference, the TCP/IP model is the protocol suite that underpins the internet and most modern networks. It is older than the OSI model and was designed to solve specific networking problems. The TCP/IP model has four layers, which can be mapped to the OSI model:
 
 ![alt text](images/2.jpg)
+
 TCP/IP Model Layers Graphical representation 
 
 1.  **Application Layer:** This layer combines the functionalities of the OSI model's Application, Presentation, and Session layers. It provides protocols for application-level communication, such as HTTP, FTP, SMTP, DNS, and SSH.
@@ -96,6 +98,7 @@ Understanding both models is beneficial. The OSI model provides a comprehensive 
 Network communication involves data originating from an application on one host being prepared for transmission across a network to an application on another host. This process involves encapsulation at the sending end and de-encapsulation at the receiving end. Data is broken down and encapsulated into packets, which are the fundamental units of data transfer across networks. Each packet contains several key components:
 
 ![alt text](images/3.jpg)
+
 Data being encapsulated in a frame and transmitted over a network before being de-encapsulated at the receiving end 
 
 *   **Data:** This is the actual payload or the information being transmitted, originating from the application layer, which could be part of an email, a segment of a webpage, or any other form of digital content. This data is usually broken down in multiple packets for transfers and encapsulated with additional information to enable the actual data transfer. 
@@ -147,6 +150,7 @@ Traditional firewalls emerged in the late 1980s as a response to the growing nee
 The fundamental objective of a traditional network firewall is to establish a secure boundary by separating a secured internal zone from a less secure external zone, meticulously controlling communications between the two. Without a firewall, any device with a public IP address would be directly accessible from the internet, significantly increasing the risk of attacks. Firewall policies define the specific types of traffic that are permitted to enter or leave the network, and any traffic that does not conform to these policies is blocked. This helps to prevent unauthorized users and malicious activities originating from less trusted zones.
 
 ![alt text](images/4.png)
+
 Traditional firewall as a boundary between untrusted (external network) and trusted (internal network) zones
 
 Traditional firewalls function as a checkpoint, inspecting and regulating network traffic based on the security rules configured by network administrators. Every piece of data traversing the internet or a network is encapsulated within network packets, as we discussed previously. Traditional firewalls analyze the header information of these packets against their configured rules to determine their legitimacy. Traffic that does not meet the specified criteria is blocked or dropped, ensuring that only safe and legitimate traffic is allowed to pass.
@@ -211,6 +215,7 @@ A Web Application Firewall (WAF) is a network security device or service that sp
 Think of a WAF as a reverse proxy, safeguarding the server by requiring clients to pass through the WAF before reaching the destination server. This intermediary position allows the WAF to inspect the content of the application-layer traffic in detail. These appliances focus in securing inbound traffic to the following digital estate: 
 
 ![alt text](images/6.png)
+
 WAF deployed to protect a server. A WAF can be placed as well behind a Firewall to further filter down on the requests 
 
 *   **Web Applications:** The WAF protects business-critical web applications from a wide range of application-layer attacks, ensuring their availability, integrity, and confidentiality.
@@ -316,6 +321,7 @@ An **IDS** is primarily a monitoring system that analyzes network traffic for su
 In contrast, an **IPS** takes a more active role in network security. Similar to an IDS, an IPS analyzes network traffic for malicious activities and vulnerabilities. However, when a threat is identified, an IPS can take automated actions to prevent the threat from compromising the network. These preventative measures can include blocking the malicious traffic, dropping harmful data packets, blocking the source IP address, resetting the connection, or triggering other security mechanisms. An IPS is typically deployed in the direct path of network traffic (inline), allowing it to scrutinize and act on threats in real-time.
 
 ![alt text](images/5.webp)
+
 Difference between IDS and IPS deployed within a network
 
 | 	                                | IPS Deployment                                        |  	IDS Deployment              |
@@ -466,6 +472,7 @@ The core objective of NDR is to provide security teams with a holistic view of n
 NDR platforms employ a range of sophisticated techniques to detect malicious activity, moving beyond the limitations of traditional signature-based detection prevalent in many IDS/IPS systems. Key detection methodologies include:
 
 ![alt text](images/8.png)
+
 NDR Platform features
 
 *   **Network Traffic Analysis (NTA) and Deep Packet Inspection (DPI):** NDR solutions perform real-time inspection of network communications, analyzing every transaction and reconstructing conversations through full-stream reassembly. DPI allows NDR to examine the content of data packets, going beyond basic header information to identify potentially malicious payloads or behaviors.
@@ -491,6 +498,7 @@ Through these detection methodologies for Network Traffic Analysis (NTA), NDR sy
 *  **Integration and Synergy with Other Security Technologies:** NDR is increasingly viewed as a critical component of a broader security ecosystem, often integrating with other solutions like Endpoint Detection and Response (EDR), Security Information and Event Management (SIEM), and Security Orchestration, Automation and Response (SOAR) platforms. This integration forms the basis of Extended Detection and Response (XDR), providing a unified security posture across multiple control points and enabling coordinated threat detection and response actions.
 
 ![alt text](images/7.png)
+
 NDR Platform integration into the Security Operation Centers Technical Stack 
 
 ### How is NDR Different from IDS/IPS Systems?
@@ -555,6 +563,7 @@ In contrast, NGFWs seamlessly integrate advanced networking and robust security.
 Another key advantage of NGFWs is their built-in IPS, which actively scans traffic for signs of attack and takes immediate action to block malicious activity, including advanced persistent threats and zero-day vulnerabilities. NGFWs leverage global threat intelligence feeds to stay updated on the latest threats, enabling real-time protection against emerging cyber threats. Operating on multiple layers, including the application layer (Layer 7), NGFWs offer granular control over traffic and better protection against advanced threats by identifying and controlling specific applications. While both support VPNs, NGFWs offer enhanced features and better control over encrypted traffic. They also provide more detailed and customizable reporting, offering insights into application usage, user behavior, and security events.
 
 ![alt text](images/9.webp)
+
 NGFW Features and capabilities 
 
 | Parameter                           | Traditional Firewall                                                                                                                               | NGFW                                                                                                                                                                                                                         |
