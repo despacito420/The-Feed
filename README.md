@@ -1,5 +1,5 @@
 # The-Feed
-The Feed is a curated Open-Source Operational Threat Intelligence for SOC / DFIR / CTI and Threat Hunting Teams. 
+The Feed is curated Open-Source Threat Intelligence for SOC / DFIR / CTI and Threat Hunting Teams. 
 
 Created and maintained by [Ruslan Rustchev](https://www.linkedin.com/in/ruslan-rustchev/). All opinions are my own and not affiliated with any company I may be associated with.
 

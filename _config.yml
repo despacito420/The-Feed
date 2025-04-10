@@ -4,5 +4,5 @@ plugins:
 minima:
   skin: auto
 title: The (SecOps) Feed
-description: The Feed is a curated Open-Source Operational Threat Intelligence for SOC / DFIR / CTI and Threat Hunting Teams.
+description: The Feed is curated Open-Source Threat Intelligence for SOC / DFIR / CTI and Threat Hunting Teams.
 author: Ruslan Rustchev
