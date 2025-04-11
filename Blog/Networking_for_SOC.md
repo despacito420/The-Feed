@@ -183,7 +183,7 @@ Traditional packet filtering firewalls primarily operate at the **network layer 
 ## Proxies and how they are different to firewalls: 
 I often see a lot of confusion between the traditional role of the Firewall and the Proxy or Proxy Firewall. In this section I will briefly discuss their role in modern security architectures in a layered approach to provide comprehensive security.
 
-### Understanding Proxy Server Functioning and it's part in the OSI Layer**
+### Understanding Proxy Server Functioning and it's part in the OSI Layer
 
 A proxy server functions as an intermediary, acting as a gateway between a user's device and the public internet. When a user requests a resource on the internet, the request is first directed to the proxy server. The proxy server then forwards this request to the destination server on behalf of the user and, upon receiving the response, relays the data back to the user's device. This indirect communication provides several key functionalities. Primarily, a proxy server can mask the user's actual IP address by using its own anonymous IP address when communicating with external servers, thereby enhancing user anonymity. Additionally, proxy servers often implement caching mechanisms, storing frequently accessed web content to reduce server load and improve latency for subsequent requests for the same resources. Some organizations also utilize proxy servers to enforce web access control policies, blocking or allowing traffic to specific URLs or content categories.
 
