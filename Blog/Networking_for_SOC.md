@@ -1,7 +1,6 @@
 # Networking for Security Analysts
 ![alt text](images/NetworkIngFor_SOC_banner.png)
 
--   [Introduction](#introduction)
 -   [Understanding the Basics of Networking](#understanding-the-basics-of-networking)
     -   [The Open Systems Interconnection (OSI) Model](#the-open-systems-interconnection-osi-model)
     -   [The TCP/IP Model](#the-tcpip-model)
@@ -43,9 +42,6 @@
 #Date: 2025-04-09 (last change)
 
 ---
-## Introduction 
-
-As a Security Operations Center Manager, I want to underscore the paramount importance of a robust comprehension of networking fundamentals for our team of experienced security analysts. The very essence of our daily responsibilities—detecting, investigating, and preventing security incidents is inextricably linked with the intricate mechanisms of network communication. Without a thorough understanding of how networks function, analysts are significantly hampered in their ability to effectively interpret security alerts, analyze suspicious network traffic, and trace the pathways of malicious activity. This paper is designed to address this critical need by providing a comprehensive exploration of networking concepts, from the foundational principles governing data transmission to the operational intricacies of key security technologies that secure network communication. A strong grasp of these fundamentals is not merely beneficial, but absolutely essential for tasks such as accurately dissecting security incidents, comprehending the operational context and limitations of various security devices like firewalls and intrusion detection systems, and effectively tracing the origins and destinations of attacks during incident investigations. This paper will therefore lay the necessary groundwork by detailing these technical concepts, ensuring that analysts possess the requisite knowledge to excel in their mission of safeguarding our organization's digital assets.
 
 ## Understanding the Basics of Networking
 
@@ -612,7 +608,7 @@ Next-Generation Firewalls represent a significant evolution in network security,
 
 ## Conclusion
 
-In conclusion, the mastery of networking fundamentals, from the foundational OSI and TCP/IP models to the nuanced operation of security technologies like traditional firewalls, proxies, WAFs, IDS/IPS, NDR, and NGFWs, is indispensable for the experienced SOC analyst. This paper has outlined the evolution of network security, highlighting the specific roles and operational layers of each technology, as well as the increasing sophistication required to defend against contemporary cyber threats. By understanding packet flows, addressing schemes, and the detection methodologies employed by these diverse systems, analysts are better equipped to interpret network traffic, analyze security alerts, conduct thorough incident investigations, and formulate effective security rules and policies. The shift towards more complex network architectures and the rise of advanced threats necessitate a comprehensive understanding of both the basic principles and the advanced tools available to us, ensuring our ability to maintain a robust security posture and effectively safeguard the organization's digital assets.
+In conclusion, the mastery of networking fundamentals, from the foundational OSI and TCP/IP models to the nuanced operation of security technologies like traditional firewalls, proxies, WAFs, IDS/IPS, NDR, and NGFWs, is indispensable for the experienced SOC analyst. This is a small, but crucial part of the ever expanding knowledge base that a security analyst must master and I hope this paper helped you overcome the initial knowledge gap.
 
 ## References
 
