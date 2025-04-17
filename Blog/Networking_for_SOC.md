@@ -292,6 +292,7 @@ SecRule REQUEST_URI|ARGS|REQUEST_HEADERS "@rx (?i)(\'|\"|--|#|\b(SELECT|UNION|IN
 *   **`tag:'...'`**: Tags for categorization and reporting.
 
 *   **`severity:'CRITICAL'`**: Sets the severity level of the detected event.
+
 ---
 
 **In Summary:**
