@@ -1,23 +1,35 @@
-# The-Feed
-The Feed is curated Open-Source Threat Intelligence for SOC / DFIR / CTI and Threat Hunting Teams. 
 
 Created and maintained by [Ruslan Rustchev](https://www.linkedin.com/in/ruslan-rustchev/). All opinions are my own and not affiliated with any company I may be associated with.
+
+# Blog
+Just my thoughts technical write-ups on current Cybersecurity topics and trends.
+
+## 2025
+[2025-04-16 BlogPost: Mitre's CVE Database under fire](./Blog/MITRE_CVE_CUTS.md)\
+[2025-04-10 Whitepaper - Networking for Security Analysts](./Blog/Networking_for_SOC.md)\
+[2025-04-01 BlogPost: Disrupting the Cybercrime throughCTI](./Blog/CyberCrime.md)
+
+## Archive
+
+[2024: Cybereason Threat Alert: The XZ Backdoor](https://www.cybereason.com/blog/threat-alert-the-xz-backdoor)\
+[2021: BlogPost: The 2021 Volkswagen Data Leak](./Blog/The_Volkswagen_DataLeak.md)\
+[2019: Azure Sentinel Whitepaper (German)](./Blog/azure-sentinel-whitepaper.pdf)
+
+# The-Feed
+The Feed is curated Open-Source Threat Intelligence for SOC / DFIR / CTI and Threat Hunting teams. 
 
 ## 2025
 
 ### April
 [2025-04-23 The Feed](./summaries/The-Feed_2025-04-23.md)\
 [2025-04-18 The Feed](./summaries/The-Feed_2025-04-18.md)\
-[2025-04-16 BlogPost: Funding Cuts Threaten Foundational Cybersecurity Infrastructure, Harming U.S. Interests and global Cyber resiliency](./Blog/MITRE_CVE_CUTS.md)\
 [2025-04-16 The Feed](./summaries/The-Feed_2025-04-16.md)\
 [2025-04-14 The Feed](./summaries/The-Feed_2025-04-14.md)\
 [2025-04-11 The Feed](./summaries/The-Feed_2025-04-11.md)\
-[2025-04-10 Whitepaper - Understanding Networking for Security Analysts](./Blog/Networking_for_SOC.md)\
 [2025-04-09 The Feed](./summaries/The-Feed_2025-04-09.md)\
 [2025-04-07 The Feed](./summaries/The-Feed_2025-04-07.md)\
 [2025-04-04 The Feed](./summaries/The-Feed_2025-04-04.md)\
-[2025-04-02 The Feed](./summaries/The-Feed_2025-04-02.md)\
-[2025-04-01 BlogPost: Disrupting the Cybercrime Ecosystem through increased CTI sharing](./Blog/CyberCrime.md)
+[2025-04-02 The Feed](./summaries/The-Feed_2025-04-02.md)
 
 ### March
 [2025-03-31 The Feed](./summaries/The-Feed_2025-03-31.md)\
@@ -57,9 +69,3 @@ Created and maintained by [Ruslan Rustchev](https://www.linkedin.com/in/ruslan-r
 [2025-01-16 The Feed](./summaries/The-Feed_2025-01-16.md)\
 [2025-01-14 The Feed](./summaries/The-Feed_2025-01-14.md)\
 [2025-01-13 The Feed](./summaries/The-Feed_2025-01-13.md)
-
-## Archive
-
-[2024: Cybereason Threat Alert: The XZ Backdoor - Supply Chaining Into Your SSH](https://www.cybereason.com/blog/threat-alert-the-xz-backdoor)\
-[2021: BlogPost: The 2021 Volkswagen Group of America Data Leak through Cloud Storage misconfiguration](./Blog/The_Volkswagen_DataLeak.md)\
-[2019: Azure Sentinel Whitepaper (German)](./Blog/azure-sentinel-whitepaper.pdf)
