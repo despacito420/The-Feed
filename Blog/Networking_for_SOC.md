@@ -210,7 +210,7 @@ A Web Application Firewall (WAF) is a network security device or service that sp
 
 Think of a WAF as a reverse proxy, safeguarding the server by requiring clients to pass through the WAF before reaching the destination server. This intermediary position allows the WAF to inspect the content of the application-layer traffic in detail. These appliances focus in securing inbound traffic to the following digital estate: 
 
-![alt text](images/6.png)
+![alt text](images/waf.gif)
 
 WAF deployed to protect a server. A WAF can be placed as well behind a Firewall to further filter down on the requests 
 
