@@ -1,11 +1,10 @@
-
 Created and maintained by [Ruslan Rustchev](https://www.linkedin.com/in/ruslan-rustchev/). All opinions are my own and not affiliated with any company I may be associated with.
 
 # Blog
 Just my thoughts technical write-ups on current Cybersecurity topics and trends.
 
 ## 2025
-[2025-05-22 Cybereason Threat Alert: Copyright Phishing Lures Leading to Rhadamanthys Stealer Now Targeting Europe](https://www.cybereason.com/blog/rhadamanthys-stealer-europe)\
+[2025-05-22 Threat Alert: Rhadamanthys Stealer Now Targeting Europe](https://www.cybereason.com/blog/rhadamanthys-stealer-europe)\
 [2025-04-16 BlogPost: Mitre's CVE Database under fire](./Blog/MITRE_CVE_CUTS.md)\
 [2025-04-10 Whitepaper - Networking for Security Analysts](./Blog/Networking_for_SOC.md)\
 [2025-04-01 BlogPost: Disrupting the Cybercrime throughCTI](./Blog/CyberCrime.md)
@@ -22,8 +21,8 @@ The Feed is curated Open-Source Threat Intelligence for SOC / DFIR / CTI and Thr
 ## 2025
 
 ### May
-[2025-04-19 The Feed](./summaries/The-Feed_2025-05-23.md)\
-[2025-04-19 The Feed](./summaries/The-Feed_2025-05-19.md)
+[2025-05-23 The Feed](./summaries/The-Feed_2025-05-23.md)\
+[2025-05-19 The Feed](./summaries/The-Feed_2025-05-19.md)
 
 ### April
 [2025-04-28 The Feed](./summaries/The-Feed_2025-04-28.md)\
