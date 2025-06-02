@@ -20,6 +20,9 @@ The Feed is curated Open-Source Threat Intelligence for SOC / DFIR / CTI and Thr
 
 ## 2025
 
+### June
+[2025-06-02 The Feed](./summaries/The-Feed_2025-06-02.md)
+
 ### May
 [2025-05-30 The Feed](./summaries/The-Feed_2025-05-30.md)\
 [2025-05-28 The Feed](./summaries/The-Feed_2025-05-28.md)\
